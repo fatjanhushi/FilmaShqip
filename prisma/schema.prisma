@@ -13,19 +13,17 @@ datasource db {
 }
 
 model User {
-  id            String @id @default(uuid())
-  email         String @unique
+  id            String   @id @default(uuid())
+  email         String   @unique
   name          String
-  userAuthToken String @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  passwordId Int      @unique
-  password   Password @relation(fields: [passwordId], references: [id])
-  role       Role     @default(USER)
-  movies     Movie[]
-  posts      Post[]
+  userAuthToken String   @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  passwordId    Int      @unique
+  password      Password @relation(fields: [passwordId], references: [id])
+  role          Role     @default(USER)
+  movies        Movie[]
+  posts         Post[]
 
   @@index([passwordId])
 }
@@ -42,25 +40,27 @@ enum Role {
 }
 
 model Post {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String @db.Text
-  views   Int    @default(0)
-  userId  String
-  user    User   @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  title     String
+  content   String?  @db.Text
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
 
 model Movie {
-  id     Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
+  ytsId         String?
+  ytsCoverImg   String?
+  ytsDescripton String? @db.Text
+
   userId String
   user   User   @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  tmdbId String
   links  Link[]
 
   @@index([userId])
