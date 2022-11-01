@@ -1,4 +1,4 @@
-<header class="container">
+<header>
 	<figure>
 		<img
 			src="https://www.getautismactive.com/wp-content/uploads/2021/01/Test-Logo-Circle-black-transparent.png"
@@ -17,7 +17,7 @@
 		/>
 	</figure>
 </header>
-<nav class="container">
+<nav>
 	<ul>
 		<li>
 			<a href="#">Menu</a>
@@ -29,7 +29,9 @@
 
 	<input type="search" placeholder="Search" />
 
-	<span>Movies</span><span>&nbsp|&nbsp</span><span>TV</span>
+	<div id="moviesOrTV">
+		<span>Movies</span><span>&nbsp|&nbsp</span><span>TV</span>
+	</div>
 </nav>
 
 <style lang="scss">
@@ -39,20 +41,22 @@
 		justify-content: space-between;
 		margin-top: 2rem;
 		background-color: white;
-		border-top-left-radius: 1rem;
-		border-top-right-radius: 1rem;
+		border-top-left-radius: inherit;
+		border-top-right-radius: inherit;
 	}
 
 	nav {
 		background-color: #232323;
 		display: flex;
+		justify-content: space-between;
 		color: white;
+		padding-block: 0.3rem;
 		ul {
 			display: flex;
 			align-items: center;
-			justify-content: space-around;
+			justify-content: space-evenly;
 			li {
-				padding: 1rem 0.5rem;
+				margin-inline: 0.5rem;
 				a {
 					color: inherit;
 				}
@@ -60,17 +64,17 @@
 		}
 		input {
 			background-color: transparent;
-			width: 100%;
+			width: 50%;
 			color: inherit;
 			&[type='search'] {
 				height: 3rem;
 				border-radius: 1rem;
-				margin: auto 1rem;
+				margin: auto 0.5rem;
 				padding-inline: 0.5rem;
 			}
 		}
-		span {
-			margin: auto 0;
+		#moviesOrTV {
+			margin: auto 0.5rem;
 		}
 	}
 </style>
